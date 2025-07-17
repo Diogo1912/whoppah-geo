@@ -29,6 +29,17 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 T_ZONE = timezone("Europe/Amsterdam")
 GPT_MODEL = "gpt-4o-mini"  # You can switch to gpt-4o or gpt-4-turbo when available
 
+# API Key handling - checks multiple sources
+def get_api_key() -> str:
+    """Get OpenAI API key from environment variables or .env file."""
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        raise ValueError(
+            "OPENAI_API_KEY not found. Please set it as an environment variable "
+            "or add it to your .env file."
+        )
+    return api_key
+
 QUERIES: List[str] = [
     # General marketplace queries
     "Where can I buy secondhand designer furniture?",
@@ -75,9 +86,12 @@ QUERIES: List[str] = [
 
 SUPERLATIVES = {"best", "great", "excellent", "amazing", "top", "superior"}
 
-# Ensure the OpenAI API key is available
-if not os.getenv("OPENAI_API_KEY"):
-    logger.warning("OPENAI_API_KEY environment variable is not set. API calls will fail.")
+# Validate API key availability at startup
+try:
+    get_api_key()
+    logger.info("OpenAI API key loaded successfully.")
+except ValueError as e:
+    logger.warning(f"API key issue: {e}")
 
 
 # ---------------------------------------------------------------------------
@@ -88,7 +102,7 @@ if not os.getenv("OPENAI_API_KEY"):
 def _get_client() -> openai.OpenAI:
     """Create and return an OpenAI client instance."""
 
-    return openai.OpenAI()
+    return openai.OpenAI(api_key=get_api_key())
 
 
 def call_llm(prompt: str) -> str:

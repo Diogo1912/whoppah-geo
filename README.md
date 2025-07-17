@@ -59,6 +59,25 @@ The dashboard will automatically open in your default browser. The first launch 
 
 ---
 
+## 🚀 Deployment Options
+
+### **Local Development**
+- Use the `.env` file (recommended for local development)
+- Copy `.env.template` to `.env` and add your API key
+
+### **Production/Cloud Deployment**
+- Set `OPENAI_API_KEY` as an environment variable
+- **Heroku**: `heroku config:set OPENAI_API_KEY=your-key`
+- **Railway**: Add in Environment Variables section
+- **Streamlit Cloud**: Add in Secrets management
+- **Docker**: Use `docker run -e OPENAI_API_KEY=your-key`
+
+### **GitHub Actions/CI**
+- Add `OPENAI_API_KEY` as a repository secret
+- Access via `${{ secrets.OPENAI_API_KEY }}`
+
+---
+
 ## Customisation
 
 * **Queries** – Edit the `QUERIES` list in `schedule.py`.
