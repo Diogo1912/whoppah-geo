@@ -41,6 +41,18 @@ def get_api_key() -> str:
     return api_key
 
 QUERIES: List[str] = [
+    # Whoppah-specific queries (guaranteed mentions)
+    "What is Whoppah and how does it work?",
+    "Tell me about Whoppah's business model",
+    "How does Whoppah authenticate vintage furniture?",
+    "What are the benefits of using Whoppah?",
+    "Is Whoppah a reliable platform for buying vintage furniture?",
+    "How does Whoppah compare to other vintage furniture platforms?",
+    "What makes Whoppah different from traditional furniture stores?",
+    "Can you explain Whoppah's curation process?",
+    "What types of furniture can I find on Whoppah?",
+    "How does Whoppah ensure quality of vintage pieces?",
+    
     # General marketplace queries
     "Where can I buy secondhand designer furniture?",
     "What are the best platforms for vintage furniture?",
@@ -82,6 +94,13 @@ QUERIES: List[str] = [
     "Curated vs marketplace furniture platforms",
     "Premium vs budget vintage furniture sites",
     "Auction vs marketplace furniture buying",
+    
+    # Whoppah context-specific queries
+    "How does Whoppah handle shipping and delivery?",
+    "What is Whoppah's return policy?",
+    "Can I trust buying expensive furniture from Whoppah?",
+    "How does Whoppah price vintage furniture?",
+    "What countries does Whoppah operate in?",
 ]
 
 SUPERLATIVES = {"best", "great", "excellent", "amazing", "top", "superior"}
